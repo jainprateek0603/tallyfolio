@@ -35,7 +35,8 @@ jobs:
 
       - run: npm run lint
 
-      - run: npm run test:unit
+      # Unit and integration tests; integration tests build prisma/test.db themselves.
+      - run: npm test
 
       - name: Seed a scratch database
         run: |
