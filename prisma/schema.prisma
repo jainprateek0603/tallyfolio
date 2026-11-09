@@ -6,7 +6,6 @@ generator client {
 //   node scripts/set-db-provider.mjs postgresql
 // Then point DATABASE_URL at Postgres and apply the schema with
 // `npx prisma db push`. Do not replay the SQLite migration SQL.
-// See DECISIONS.md.
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
