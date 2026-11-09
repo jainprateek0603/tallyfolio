@@ -268,8 +268,8 @@ export const createInvoiceSchema = z
   .superRefine(checkDateOrder);
 
 /**
- * When only one of issueDate/dueDate is sent, the route must still compare it
- * with the stored value; this schema can only check the pair when both are sent.
+ * Checks issueDate/dueDate order only when both are sent. Update routes must
+ * pass the result through `mergeInvoiceDates` to check against stored dates.
  */
 export const updateInvoiceSchema = z
   .object(invoiceFields)

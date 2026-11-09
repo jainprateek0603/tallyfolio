@@ -16,9 +16,13 @@
 - `invoice-status.ts` reuses `startOfUtcDay`. Removed the unused `flattenIssues` from `params.ts`.
 
 ### Added
-- Vitest config with the `@/` alias, plus 28 unit tests in `tests/unit` for schemas, dates, invoice math, statuses, money, plan limits, page queries and the Sentry DSN parser.
+- Vitest config with the `@/` alias, plus 40 unit tests in `tests/unit` for schemas, dates, invoice math, statuses, money, plan limits, page queries, the Sentry DSN parser and the HTTP helpers (`ok`, `readJson`, `parseBody`, `parseQuery`, `handleError`).
+- `mergeInvoiceDates` in `src/lib/invoice-dates.ts` checks an invoice update's dates against the stored ones, for when a request sends only one date.
+- GitHub Actions CI runs typecheck, lint, unit tests and the seed on every PR and on pushes to `main`.
+- Dependabot opens weekly update PRs for npm packages (minor and patch grouped) and GitHub Actions.
+- `.nvmrc` and `engines.node >= 24` pin the Node version. `.gitattributes` keeps text files LF on every OS.
 
 ### Known gaps
 - The app routes and pages under `src/app`, auth, Stripe, cron, email, AI and exports described in the README are not in this repository.
 - `tests/integration` and Playwright tests do not exist yet, so `npm run test:integration` and `npm run test:e2e` have nothing to run.
-- When an invoice update sends only `issueDate` or only `dueDate`, the route must compare it with the stored value. The schema can only check the pair.
+- Invoice update routes must call `mergeInvoiceDates`. Those routes are not in the repository yet.
