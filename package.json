@@ -1,6 +1,6 @@
 {
   "name": "tallyfolio",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -27,7 +27,7 @@
     "@auth/prisma-adapter": "2.11.3",
     "@prisma/client": "6.19.3",
     "bcryptjs": "3.0.3",
-    "next": "16.4.0",
+    "next": "16.4.5",
     "next-auth": "5.0.0-beta.32",
     "pdfkit": "0.20.2",
     "react": "19.3.0",
@@ -44,7 +44,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "16.4.5",
     "prisma": "6.19.3",
     "tailwindcss": "^4",
     "tsx": "4.23.15",

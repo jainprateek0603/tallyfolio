@@ -115,3 +115,28 @@ describe("parseSentryDsn", () => {
     expect(parseSentryDsn("https://o1.ingest.sentry.io/42")).toBeNull();
   });
 });
+
+describe("parseHundredths", () => {
+  it("parses amounts, quantities and rates", async () => {
+    const { parseHundredths, formatHundredths, formatQuantity } = await import("@/lib/money");
+    expect(parseHundredths("95")).toBe(9_500);
+    expect(parseHundredths("1.5")).toBe(150);
+    expect(parseHundredths("1,250.05")).toBe(125_005);
+    expect(parseHundredths(" 8.25 ")).toBe(825);
+    expect(parseHundredths("1.234")).toBeNull();
+    expect(parseHundredths("-1")).toBeNull();
+    expect(parseHundredths("abc")).toBeNull();
+    expect(formatHundredths(125_005)).toBe("1250.05");
+    expect(formatHundredths(7)).toBe("0.07");
+    expect([formatQuantity(250), formatQuantity(300), formatQuantity(825)]).toEqual(["2.5", "3", "8.25"]);
+  });
+});
+
+describe("rate limit", () => {
+  it("allows up to the limit per window, then resets", async () => {
+    const { consume } = await import("@/lib/rate-limit");
+    const start = 1_000_000;
+    expect([1, 2, 3].map(() => consume("k", 2, start))).toEqual([true, true, false]);
+    expect(consume("k", 2, start + 15 * 60 * 1000)).toBe(true);
+  });
+});
