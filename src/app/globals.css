@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --ink: #1a2332;
+  --paper: #e6eef3;
+  --sheet: #fbfcfd;
+  --rule: #c5d2dc;
+  --cobalt: #1e4d8c;
+  --on-cobalt: #fbfcfd;
+  --brass: #8c6a32;
+  --pine: #1b6b45;
+  --overdue: #8e2f2f;
+  --muted: #4d5d6c;
+}
+
+.dark {
+  --ink: #e6edf2;
+  --paper: #12181f;
+  --sheet: #1a2330;
+  --rule: #2c3a4a;
+  --cobalt: #8fb4e8;
+  --on-cobalt: #12181f;
+  --brass: #d4b483;
+  --pine: #8dceb0;
+  --overdue: #f0b4b4;
+  --muted: #b7c5d1;
+}
+
+@theme inline {
+  --font-sans: var(--font-public-sans), "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), "Iowan Old Style", Palatino, serif;
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-rule: var(--rule);
+  --color-cobalt: var(--cobalt);
+  --color-on-cobalt: var(--on-cobalt);
+  --color-brass: var(--brass);
+  --color-pine: var(--pine);
+  --color-overdue: var(--overdue);
+  --color-muted: var(--muted);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+}
+
+.ledger-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    color-mix(in srgb, var(--rule) 75%, transparent) 32px
+  );
+}
+
+.stamp {
+  animation: stamp-in 480ms ease-out both;
+}
+
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: rotate(-14deg) scale(1.12);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+table tbody tr:hover {
+  background: color-mix(in srgb, var(--cobalt) 7%, transparent);
+}
+
+.paper-sheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  box-shadow: 6px 6px 0 0 var(--rule);
+}
