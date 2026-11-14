@@ -1,0 +1,6 @@
+# Store text with LF in the repo and check it out with LF everywhere.
+* text=auto eol=lf
+
+*.ico binary
+*.png binary
+*.svg text
